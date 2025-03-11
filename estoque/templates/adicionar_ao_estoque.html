@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar ao Estoque</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    {% include "./parcials/header.html" %}
+    <main>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h1 class="text-center mb-4">Adicionar ao Estoque</h1>
+                    <form action="{% url 'adicionar_ao_estoque' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="produto">Produto</label>
+                            <select name="produto" id="produto" class="form-control" required>
+                                {% for produto in produtos %}
+                                    <option value="{{ produto.id }}">{{ produto.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantidade">Quantidade</label>
+                            <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="preco">Preço</label>
+                            <input type="number" class="form-control" id="preco" name="preco" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fornecedor">Fornecedor</label>
+                            <input type="text" class="form-control" id="fornecedor" name="fornecedor">
+                        </div>
+                        <div class="form-group">
+                            <label for="descricao">Descrição</label>
+                            <textarea class="form-control" id="descricao" name="descricao"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

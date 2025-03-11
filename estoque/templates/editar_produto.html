@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Produto</title>
+    <!-- Incluindo o CSS do Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    {% include "./parcials/header.html" %}
+    <main>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h1 class="text-center mb-4">Editar Produto</h1>
+                    <form action="{% url 'editar_produto' produto.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="preco">Preço</label>
+                            <input type="number" class="form-control" id="preco" name="preco" value="{{ form.preco.value }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="fornecedor">Fornecedor</label>
+                            <input type="text" class="form-control" id="fornecedor" name="fornecedor" value="{{ form.fornecedor.value }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="descricao">Descrição</label>
+                            <input type="text" class="form-control" id="descricao" name="descricao" value="{{ form.descricao.value }}">
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary flex-fill mr-1">Salvar</button>
+                            <a href="{% url 'excluir_produto' produto.id %}" class="btn btn-danger flex-fill ml-1">Excluir</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Incluindo o JS do Bootstrap e dependências -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
