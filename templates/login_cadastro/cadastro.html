@@ -1,0 +1,46 @@
+<!-- filepath: c:\Users\gusta\OneDrive\Documentos\Programação\stockly\templates\login_cadastro\cadastro.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Stockly</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/cadastro.css' %}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <form action={% url "cadastro" %} method="POST"> {% csrf_token %}
+            <div class="titulo">
+                <img src="{% static 'assets/logostockly.PNG' %}" alt="Logotipo da Stockly">
+                <h1>Cadastro</h1>
+            </div>
+            <div class="input-box">
+                <input type="name" name="nome_cadastro" placeholder="Nome de Usuário">
+                <i class="bi bi-person"></i>
+            </div>
+            <div class="input-box">
+                <input type="email" name="email" placeholder="Email">
+                <i class="bi bi-person"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" name="senha_1" placeholder="Senha">
+                <i class="bi bi-shield-lock"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" name="senha_2" placeholder="Confirme sua senha">
+                <i class="bi bi-shield-lock"></i>
+            </div>
+            <div class="button_entrar">
+                <button type="submit">Cadastrar</button>
+            </div>
+            {% if messages %}
+                {% for message in messages%}
+                    <p class="alert alert-primary" id='messages'>{{message}}</p>
+                {% endfor%}
+            {% endif%}
+        </form>
+    </main>
+</body>
+</html>
